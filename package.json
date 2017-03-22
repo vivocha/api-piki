@@ -1,6 +1,6 @@
 {
   "name": "api-piki",
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "description": "An Open API Specification (fka Swagger) parser & Mocha/Chai-based API test skeletons generator",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "watch:test": "npm t -- -w",
     "test": "mocha",
     "cover": "nyc --reporter=lcov --reporter=text npm t",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"    
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "bin": {
     "piki": "./index.js"
@@ -28,13 +28,13 @@
     "doc",
     "Test"
   ],
-   "files": [
+  "files": [
     "src",
     "index.js",
     "README.md",
     "LICENSE"
   ],
-  "author": "Antonio Pintus <apintus@vivocha.com>", 
+  "author": "Antonio Pintus <apintus@vivocha.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/vivocha/api-piki/issues"
