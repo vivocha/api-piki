@@ -1,0 +1,2565 @@
+{
+    "swagger": "2.0",
+    "schemes": [
+        "https",
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/schemas/{id}": {
+            "get": {
+                "summary": "Retrieve a Schema by id",
+                "operationId": "Schema.read",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    },
+                    {
+                        "$ref": "#/parameters/fields"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The requested Schema",
+                        "schema": {}
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Schema"
+                ]
+            }
+        },
+        "/users": {
+            "get": {
+                "summary": "Retrieve a list of Users",
+                "operationId": "User.query",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/parameters/skip"
+                    },
+                    {
+                        "$ref": "#/parameters/fields"
+                    },
+                    {
+                        "$ref": "#/parameters/sort"
+                    },
+                    {
+                        "$ref": "#/parameters/query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of matching Users",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "schemas/user"
+                            }
+                        },
+                        "headers": {
+                            "Link": {
+                                "description": "Data pagination links, as described in RFC5988. Currently only rel=next is supported",
+                                "type": "string"
+                            },
+                            "Results-Matching": {
+                                "description": "Total number of resources matching the query",
+                                "type": "integer",
+                                "minimum": 0
+                            },
+                            "Results-Skipped": {
+                                "description": "Number of resources skipped to return the current batch of resources",
+                                "type": "integer",
+                                "minimum": 0
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "WRONG-schema": [
+                            "User.query"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "User.query"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "User.query"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "User.query"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Create a new User",
+                "operationId": "User.create",
+                "parameters": [
+                    {
+                        "description": "The User to be created, omitting the metadata",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "schemas/user"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "User successfully created",
+                        "schema": {
+                            "$ref": "schemas/user"
+                        },
+                        "headers": {
+                            "Location": {
+                                "description": "URI of the newly created resource",
+                                "type": "string",
+                                "format": "uri"
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "User.create"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "User.create"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "User.create"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "User.create"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "summary": "Retrieve a User by id",
+                "operationId": "User.read",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    },
+                    {
+                        "$ref": "#/parameters/fields"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The requested User",
+                        "schema": {
+                            "$ref": "schemas/user"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "User.read"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "User.read"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "User.read"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "User.read"
+                        ]
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Update a User",
+                "operationId": "User.update",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    },
+                    {
+                        "description": "The updated User, minus the unique identifier and the metatadata",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "schemas/user"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User successfully updated",
+                        "schema": {
+                            "$ref": "schemas/user"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "User.update"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "User.update"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "User.update"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "User.update"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete a User by id",
+                "operationId": "User.remove",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User successfully deleted"
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "User.remove"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "User.remove"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "User.remove"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "User.remove"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/plans": {
+            "get": {
+                "summary": "Retrieve a list of Plans",
+                "operationId": "Plan.query",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/parameters/skip"
+                    },
+                    {
+                        "$ref": "#/parameters/fields"
+                    },
+                    {
+                        "$ref": "#/parameters/sort"
+                    },
+                    {
+                        "$ref": "#/parameters/query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of matching Plans",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "schemas/plan"
+                            }
+                        },
+                        "headers": {
+                            "Link": {
+                                "description": "Data pagination links, as described in RFC5988. Currently only rel=next is supported",
+                                "type": "string"
+                            },
+                            "Results-Matching": {
+                                "description": "Total number of resources matching the query",
+                                "type": "integer",
+                                "minimum": 0
+                            },
+                            "Results-Skipped": {
+                                "description": "Number of resources skipped to return the current batch of resources",
+                                "type": "integer",
+                                "minimum": 0
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Plan"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Plan.query"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Plan.query"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Plan.query"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Plan.query"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Create a new Plan",
+                "operationId": "Plan.create",
+                "parameters": [
+                    {
+                        "description": "The Plan to be created, omitting the metadata",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "schemas/plan"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Plan successfully created",
+                        "schema": {
+                            "$ref": "schemas/plan"
+                        },
+                        "headers": {
+                            "Location": {
+                                "description": "URI of the newly created resource",
+                                "type": "string",
+                                "format": "uri"
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Plan"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Plan.create"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Plan.create"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Plan.create"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Plan.create"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/plans/{id}": {
+            "get": {
+                "summary": "Retrieve a Plan by id",
+                "operationId": "Plan.read",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    },
+                    {
+                        "$ref": "#/parameters/fields"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The requested Plan",
+                        "schema": {
+                            "$ref": "schemas/plan"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Plan"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Plan.read"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Plan.read"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Plan.read"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Plan.read"
+                        ]
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Update a Plan",
+                "operationId": "Plan.update",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    },
+                    {
+                        "description": "The updated Plan, minus the unique identifier and the metatadata",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "schemas/plan"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Plan successfully updated",
+                        "schema": {
+                            "$ref": "schemas/plan"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Plan"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Plan.update"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Plan.update"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Plan.update"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Plan.update"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete a Plan by id",
+                "operationId": "Plan.remove",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Plan successfully deleted"
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Plan"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Plan.remove"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Plan.remove"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Plan.remove"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Plan.remove"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/clients": {
+            "get": {
+                "summary": "Retrieve a list of Clients",
+                "operationId": "Client.query",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/parameters/skip"
+                    },
+                    {
+                        "$ref": "#/parameters/fields"
+                    },
+                    {
+                        "$ref": "#/parameters/sort"
+                    },
+                    {
+                        "$ref": "#/parameters/query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of matching Clients",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "schemas/client"
+                            }
+                        },
+                        "headers": {
+                            "Link": {
+                                "description": "Data pagination links, as described in RFC5988. Currently only rel=next is supported",
+                                "type": "string"
+                            },
+                            "Results-Matching": {
+                                "description": "Total number of resources matching the query",
+                                "type": "integer",
+                                "minimum": 0
+                            },
+                            "Results-Skipped": {
+                                "description": "Number of resources skipped to return the current batch of resources",
+                                "type": "integer",
+                                "minimum": 0
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Client"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Client.query"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Client.query"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Client.query"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Client.query"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Create a new Client",
+                "operationId": "Client.create",
+                "parameters": [
+                    {
+                        "description": "The Client to be created, omitting the metadata",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "$ref": "schemas/client#/definitions/readWriteProperties/properties"
+                            },
+                            "required": {
+                                "$ref": "schemas/client#/definitions/readWriteProperties/required"
+                            },
+                            "additionalProperties": false
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Client successfully created",
+                        "schema": {
+                            "$ref": "schemas/client"
+                        },
+                        "headers": {
+                            "Location": {
+                                "description": "URI of the newly created resource",
+                                "type": "string",
+                                "format": "uri"
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Client"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Client.create"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Client.create"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Client.create"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Client.create"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/clients/{id}": {
+            "get": {
+                "summary": "Retrieve a Client by id",
+                "operationId": "Client.read",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    },
+                    {
+                        "$ref": "#/parameters/fields"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The requested Client",
+                        "schema": {
+                            "$ref": "schemas/client"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Client"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Client.read"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Client.read"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Client.read"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Client.read"
+                        ]
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Update a Client",
+                "operationId": "Client.update",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    },
+                    {
+                        "description": "The updated Client, minus the unique identifier and the metatadata",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "$ref": "schemas/client#/definitions/readWriteProperties/properties"
+                            },
+                            "required": {
+                                "$ref": "schemas/client#/definitions/readWriteProperties/required"
+                            },
+                            "additionalProperties": false
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Client successfully updated",
+                        "schema": {
+                            "$ref": "schemas/client"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Client"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Client.update"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Client.update"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Client.update"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Client.update"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete a Client by id",
+                "operationId": "Client.remove",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Client successfully deleted"
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Client"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Client.remove"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Client.remove"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Client.remove"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Client.remove"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/templates": {
+            "get": {
+                "summary": "Retrieve a list of Templates",
+                "operationId": "Template.query",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/parameters/skip"
+                    },
+                    {
+                        "$ref": "#/parameters/fields"
+                    },
+                    {
+                        "$ref": "#/parameters/sort"
+                    },
+                    {
+                        "$ref": "#/parameters/query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of matching Templates",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "schemas/template"
+                            }
+                        },
+                        "headers": {
+                            "Link": {
+                                "description": "Data pagination links, as described in RFC5988. Currently only rel=next is supported",
+                                "type": "string"
+                            },
+                            "Results-Matching": {
+                                "description": "Total number of resources matching the query",
+                                "type": "integer",
+                                "minimum": 0
+                            },
+                            "Results-Skipped": {
+                                "description": "Number of resources skipped to return the current batch of resources",
+                                "type": "integer",
+                                "minimum": 0
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Template"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Template.query"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Template.query"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Template.query"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Template.query"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Create a new Template",
+                "operationId": "Template.create",
+                "parameters": [
+                    {
+                        "description": "The Template to be created, omitting the metadata",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "schemas/template"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Template successfully created",
+                        "schema": {
+                            "$ref": "schemas/template"
+                        },
+                        "headers": {
+                            "Location": {
+                                "description": "URI of the newly created resource",
+                                "type": "string",
+                                "format": "uri"
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Template"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Template.create"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Template.create"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Template.create"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Template.create"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/templates/{id}": {
+            "get": {
+                "summary": "Retrieve a Template by id",
+                "operationId": "Template.read",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    },
+                    {
+                        "$ref": "#/parameters/fields"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The requested Template",
+                        "schema": {
+                            "$ref": "schemas/template"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Template"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Template.read"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Template.read"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Template.read"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Template.read"
+                        ]
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Update a Template",
+                "operationId": "Template.update",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    },
+                    {
+                        "description": "The updated Template, minus the unique identifier and the metatadata",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "schemas/template"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Template successfully updated",
+                        "schema": {
+                            "$ref": "schemas/template"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Template"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Template.update"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Template.update"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Template.update"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Template.update"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete a Template by id",
+                "operationId": "Template.remove",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Template successfully deleted"
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Template"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Template.remove"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Template.remove"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Template.remove"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Template.remove"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/profiles": {
+            "get": {
+                "summary": "Retrieve a list of Profiles",
+                "operationId": "Profile.query",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/parameters/skip"
+                    },
+                    {
+                        "$ref": "#/parameters/fields"
+                    },
+                    {
+                        "$ref": "#/parameters/sort"
+                    },
+                    {
+                        "$ref": "#/parameters/query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of matching Profiles",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "schemas/profile"
+                            }
+                        },
+                        "headers": {
+                            "Link": {
+                                "description": "Data pagination links, as described in RFC5988. Currently only rel=next is supported",
+                                "type": "string"
+                            },
+                            "Results-Matching": {
+                                "description": "Total number of resources matching the query",
+                                "type": "integer",
+                                "minimum": 0
+                            },
+                            "Results-Skipped": {
+                                "description": "Number of resources skipped to return the current batch of resources",
+                                "type": "integer",
+                                "minimum": 0
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Profile"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Profile.query"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Profile.query"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Profile.query"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Profile.query"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Create a new Profile",
+                "operationId": "Profile.create",
+                "parameters": [
+                    {
+                        "description": "The Profile to be created, omitting the metadata",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "schemas/profile"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Profile successfully created",
+                        "schema": {
+                            "$ref": "schemas/profile"
+                        },
+                        "headers": {
+                            "Location": {
+                                "description": "URI of the newly created resource",
+                                "type": "string",
+                                "format": "uri"
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Profile"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Profile.create"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Profile.create"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Profile.create"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Profile.create"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/profiles/{id}": {
+            "get": {
+                "summary": "Retrieve a Profile by id",
+                "operationId": "Profile.read",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    },
+                    {
+                        "$ref": "#/parameters/fields"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The requested Profile",
+                        "schema": {
+                            "$ref": "schemas/profile"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Profile"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Profile.read"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Profile.read"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Profile.read"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Profile.read"
+                        ]
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Update a Profile",
+                "operationId": "Profile.update",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    },
+                    {
+                        "description": "The updated Profile, minus the unique identifier and the metatadata",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "schemas/profile"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Profile successfully updated",
+                        "schema": {
+                            "$ref": "schemas/profile"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Profile"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Profile.update"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Profile.update"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Profile.update"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Profile.update"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete a Profile by id",
+                "operationId": "Profile.remove",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Profile successfully deleted"
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Profile"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Profile.remove"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Profile.remove"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Profile.remove"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Profile.remove"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/accounts": {
+            "get": {
+                "summary": "Retrieve a list of Accounts",
+                "operationId": "Account.query",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/parameters/skip"
+                    },
+                    {
+                        "$ref": "#/parameters/fields"
+                    },
+                    {
+                        "$ref": "#/parameters/sort"
+                    },
+                    {
+                        "$ref": "#/parameters/query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of matching Accounts (custom)",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "schemas/account"
+                            }
+                        },
+                        "headers": {
+                            "Link": {
+                                "description": "Data pagination links, as described in RFC5988. Currently only rel=next is supported",
+                                "type": "string"
+                            },
+                            "Results-Matching": {
+                                "description": "Total number of resources matching the query",
+                                "type": "integer",
+                                "minimum": 0
+                            },
+                            "Results-Skipped": {
+                                "description": "Number of resources skipped to return the current batch of resources",
+                                "type": "integer",
+                                "minimum": 0
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Account"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Account.query"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Account.query"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Account.query"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Account.query"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Create a new Account",
+                "operationId": "Account.create",
+                "parameters": [
+                    {
+                        "description": "The Account to be created, omitting the metadata",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "schemas/account_create"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Account successfully created",
+                        "schema": {
+                            "$ref": "schemas/account"
+                        },
+                        "headers": {
+                            "Location": {
+                                "description": "URI of the newly created resource",
+                                "type": "string",
+                                "format": "uri"
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Account"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Account.create"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Account.create"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Account.create"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Account.create"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/accounts/{id}": {
+            "get": {
+                "summary": "Retrieve a Account by id",
+                "operationId": "Account.read",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    },
+                    {
+                        "$ref": "#/parameters/fields"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The requested Account",
+                        "schema": {
+                            "$ref": "schemas/account"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Account"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Account.read"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Account.read"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Account.read"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Account.read"
+                        ]
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Update a Account",
+                "operationId": "Account.update",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    },
+                    {
+                        "description": "The updated Account, minus the unique identifier and the metatadata",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "schemas/account_update"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Account successfully updated",
+                        "schema": {
+                            "$ref": "schemas/account"
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Account"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Account.update"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Account.update"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Account.update"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Account.update"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete a Account by id",
+                "operationId": "Account.remove",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Account successfully deleted"
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Account"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Account.remove"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Account.remove"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Account.remove"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Account.remove"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/applications": {
+            "get": {
+                "summary": "Retrieve a list of Applications",
+                "operationId": "Application.query",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/parameters/skip"
+                    },
+                    {
+                        "$ref": "#/parameters/fields"
+                    },
+                    {
+                        "$ref": "#/parameters/sort"
+                    },
+                    {
+                        "$ref": "#/parameters/query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of matching Applications",
+                        "schema": {
+                            "type": "array",
+                            "items": {}
+                        },
+                        "headers": {
+                            "Link": {
+                                "description": "Data pagination links, as described in RFC5988. Currently only rel=next is supported",
+                                "type": "string"
+                            },
+                            "Results-Matching": {
+                                "description": "Total number of resources matching the query",
+                                "type": "integer",
+                                "minimum": 0
+                            },
+                            "Results-Skipped": {
+                                "description": "Number of resources skipped to return the current batch of resources",
+                                "type": "integer",
+                                "minimum": 0
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Application"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Application.query"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Application.query"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Application.query"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Application.query"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Create a new Application",
+                "operationId": "Application.create",
+                "parameters": [
+                    {
+                        "description": "The Application to be created, omitting the metadata",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {}
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Application successfully created",
+                        "schema": {},
+                        "headers": {
+                            "Location": {
+                                "description": "URI of the newly created resource",
+                                "type": "string",
+                                "format": "uri"
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Application"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Application.create"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Application.create"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Application.create"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Application.create"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/applications/{id}": {
+            "get": {
+                "summary": "Retrieve a Application by id",
+                "operationId": "Application.read",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    },
+                    {
+                        "$ref": "#/parameters/fields"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The requested Application",
+                        "schema": {}
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Application"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Application.read"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Application.read"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Application.read"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Application.read"
+                        ]
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Update a Application",
+                "operationId": "Application.update",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    },
+                    {
+                        "description": "The updated Application, minus the unique identifier and the metatadata",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {}
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Application successfully updated",
+                        "schema": {}
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Application"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Application.update"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Application.update"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Application.update"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Application.update"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete a Application by id",
+                "operationId": "Application.remove",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Application successfully deleted"
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Application"
+                ],
+                "security": [
+                    {
+                        "access_code": [
+                            "Application.remove"
+                        ]
+                    },
+                    {
+                        "implicit": [
+                            "Application.remove"
+                        ]
+                    },
+                    {
+                        "password": [
+                            "Application.remove"
+                        ]
+                    },
+                    {
+                        "client_credentials": [
+                            "Application.remove"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/applications/{id}/public/script/{script}": {
+            "get": {
+                "summary": "Retrieve a public Javascript asset by id",
+                "operationId": "Application.getScript",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/id"
+                    },
+                    {
+                        "$ref": "#/parameters/fields"
+                    },
+                    {
+                        "name": "script",
+                        "in": "path",
+                        "description": "Script identifier",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A JSON object containing the requested script",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "script": {
+                                    "description": "The requested script",
+                                    "type": "string"
+                                },
+                                "required": [
+                                    "script"
+                                ]
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/responses/notFound"
+                    },
+                    "default": {
+                        "$ref": "#/responses/defaultError"
+                    }
+                },
+                "tags": [
+                    "Application"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "metadata": {
+            "description": "Metadata associated with the resource",
+            "type": "object"
+        },
+        "objectId": {
+            "description": "Name of the property storing the unique identifier of the resource",
+            "type": "string"
+        },
+        "errorResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "integer",
+                    "minimum": 100
+                },
+                "message": {
+                    "type": "string"
+                },
+                "info": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "error",
+                "message"
+            ]
+        }
+    },
+    "parameters": {
+        "id": {
+            "description": "Unique identifier of the resource",
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+        },
+        "limit": {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of items to return",
+            "type": "integer",
+            "default": 20,
+            "minimum": 1,
+            "maximum": 100
+        },
+        "skip": {
+            "name": "skip",
+            "in": "query",
+            "description": "Skip the specified number of items",
+            "type": "integer",
+            "default": 0,
+            "minimum": 0
+        },
+        "fields": {
+            "name": "fields",
+            "in": "query",
+            "description": "Return only the specified properties",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "uniqueItems": true
+        },
+        "sort": {
+            "name": "sort",
+            "in": "query",
+            "description": "Sorting criteria, using RQL syntax (a,-b,+c)",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "uniqueItems": true
+        },
+        "query": {
+            "name": "q",
+            "in": "query",
+            "description": "Return only items matching the specified [RQL](https://github.com/persvr/rql) query. This parameter can also be used to specify the ordering criteria of the results",
+            "type": "string"
+        }
+    },
+    "responses": {
+        "defaultError": {
+            "description": "Default/generic error response",
+            "schema": {
+                "$ref": "#/definitions/errorResponse"
+            }
+        },
+        "notFound": {
+            "description": "The requested/specified resource was not found",
+            "schema": {
+                "$ref": "#/definitions/errorResponse"
+            }
+        }
+    },
+    "info": {
+        "version": "2.0.0",
+        "title": "TEST REST API",
+        "description": "TEST REST API version 2",
+        "contact": {
+            "name": "TEST API",
+            "email": "support@test.fake.com",
+            "url": "http://www.TEST-TEST-me.com"
+        },
+        "license": {
+            "name": "MIT License",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "securityDefinitions": {
+        "basic": {
+            "type": "basic",
+            "description": "Basic HTTP Authentication"
+        },
+        "access_code": {
+            "type": "oauth2",
+            "description": "OAuth 2 Authorization Code Grant",
+            "flow": "accessCode",
+            "authorizationUrl": "https://local.myserver.test.co/api/v2/authorize",
+            "tokenUrl": "https://local.myserver.test.co/api/v2/token",
+            "scopes": {
+                "Schema": "Unrestricted access to all Schemas",
+                "Schema.create": "Create a new Schema",
+                "Schema.query": "List and search the Schemas",
+                "Schema.read": "Read a Schema",
+                "Schema.remove": "Remove a Schema",
+                "Schema.update": "Update a Schema",
+                "User": "Unrestricted access to all Users",
+                "User.create": "Create a new User",
+                "User.query": "List and search the Users",
+                "User.read": "Read a User",
+                "User.remove": "Remove a User",
+                "User.update": "Update a User",
+                "Plan": "Unrestricted access to all Plans",
+                "Plan.create": "Create a new Plan",
+                "Plan.query": "List and search the Plans",
+                "Plan.read": "Read a Plan",
+                "Plan.remove": "Remove a Plan",
+                "Plan.update": "Update a Plan",
+                "Client": "Unrestricted access to all Clients",
+                "Client.create": "Create a new Client",
+                "Client.query": "List and search the Clients",
+                "Client.read": "Read a Client",
+                "Client.remove": "Remove a Client",
+                "Client.update": "Update a Client",
+                "Template": "Unrestricted access to all Templates",
+                "Template.create": "Create a new Template",
+                "Template.query": "List and search the Templates",
+                "Template.read": "Read a Template",
+                "Template.remove": "Remove a Template",
+                "Template.update": "Update a Template",
+                "Profile": "Unrestricted access to all Profiles",
+                "Profile.create": "Create a new Profile",
+                "Profile.query": "List and search the Profiles",
+                "Profile.read": "Read a Profile",
+                "Profile.remove": "Remove a Profile",
+                "Profile.update": "Update a Profile",
+                "Account": "Unrestricted access to all Accounts",
+                "Account.create": "Create a new Account",
+                "Account.query": "List and search the Accounts",
+                "Account.read": "Read a Account",
+                "Account.remove": "Remove a Account",
+                "Account.update": "Update a Account",
+                "Application": "Unrestricted access to all Applications",
+                "Application.create": "Create a new Application",
+                "Application.query": "List and search the Applications",
+                "Application.read": "Read a Application",
+                "Application.remove": "Remove a Application",
+                "Application.update": "Update a Application"
+            }
+        },
+        "implicit": {
+            "type": "oauth2",
+            "description": "OAuth 2 Implicit Grant",
+            "flow": "implicit",
+            "authorizationUrl": "https://local.myserver.test.co/api/v2/authorize",
+            "scopes": {
+                "Schema": "Unrestricted access to all Schemas",
+                "Schema.create": "Create a new Schema",
+                "Schema.query": "List and search the Schemas",
+                "Schema.read": "Read a Schema",
+                "Schema.remove": "Remove a Schema",
+                "Schema.update": "Update a Schema",
+                "User": "Unrestricted access to all Users",
+                "User.create": "Create a new User",
+                "User.query": "List and search the Users",
+                "User.read": "Read a User",
+                "User.remove": "Remove a User",
+                "User.update": "Update a User",
+                "Plan": "Unrestricted access to all Plans",
+                "Plan.create": "Create a new Plan",
+                "Plan.query": "List and search the Plans",
+                "Plan.read": "Read a Plan",
+                "Plan.remove": "Remove a Plan",
+                "Plan.update": "Update a Plan",
+                "Client": "Unrestricted access to all Clients",
+                "Client.create": "Create a new Client",
+                "Client.query": "List and search the Clients",
+                "Client.read": "Read a Client",
+                "Client.remove": "Remove a Client",
+                "Client.update": "Update a Client",
+                "Template": "Unrestricted access to all Templates",
+                "Template.create": "Create a new Template",
+                "Template.query": "List and search the Templates",
+                "Template.read": "Read a Template",
+                "Template.remove": "Remove a Template",
+                "Template.update": "Update a Template",
+                "Profile": "Unrestricted access to all Profiles",
+                "Profile.create": "Create a new Profile",
+                "Profile.query": "List and search the Profiles",
+                "Profile.read": "Read a Profile",
+                "Profile.remove": "Remove a Profile",
+                "Profile.update": "Update a Profile",
+                "Account": "Unrestricted access to all Accounts",
+                "Account.create": "Create a new Account",
+                "Account.query": "List and search the Accounts",
+                "Account.read": "Read a Account",
+                "Account.remove": "Remove a Account",
+                "Account.update": "Update a Account",
+                "Application": "Unrestricted access to all Applications",
+                "Application.create": "Create a new Application",
+                "Application.query": "List and search the Applications",
+                "Application.read": "Read a Application",
+                "Application.remove": "Remove a Application",
+                "Application.update": "Update a Application"
+            }
+        },
+        "password": {
+            "type": "oauth2",
+            "description": "OAuth 2 Resource Owner Password Grant",
+            "flow": "password",
+            "tokenUrl": "https://local.myserver.test.co/api/v2/token",
+            "scopes": {
+                "Schema": "Unrestricted access to all Schemas",
+                "Schema.create": "Create a new Schema",
+                "Schema.query": "List and search the Schemas",
+                "Schema.read": "Read a Schema",
+                "Schema.remove": "Remove a Schema",
+                "Schema.update": "Update a Schema",
+                "User": "Unrestricted access to all Users",
+                "User.create": "Create a new User",
+                "User.query": "List and search the Users",
+                "User.read": "Read a User",
+                "User.remove": "Remove a User",
+                "User.update": "Update a User",
+                "Plan": "Unrestricted access to all Plans",
+                "Plan.create": "Create a new Plan",
+                "Plan.query": "List and search the Plans",
+                "Plan.read": "Read a Plan",
+                "Plan.remove": "Remove a Plan",
+                "Plan.update": "Update a Plan",
+                "Client": "Unrestricted access to all Clients",
+                "Client.create": "Create a new Client",
+                "Client.query": "List and search the Clients",
+                "Client.read": "Read a Client",
+                "Client.remove": "Remove a Client",
+                "Client.update": "Update a Client",
+                "Template": "Unrestricted access to all Templates",
+                "Template.create": "Create a new Template",
+                "Template.query": "List and search the Templates",
+                "Template.read": "Read a Template",
+                "Template.remove": "Remove a Template",
+                "Template.update": "Update a Template",
+                "Profile": "Unrestricted access to all Profiles",
+                "Profile.create": "Create a new Profile",
+                "Profile.query": "List and search the Profiles",
+                "Profile.read": "Read a Profile",
+                "Profile.remove": "Remove a Profile",
+                "Profile.update": "Update a Profile",
+                "Account": "Unrestricted access to all Accounts",
+                "Account.create": "Create a new Account",
+                "Account.query": "List and search the Accounts",
+                "Account.read": "Read a Account",
+                "Account.remove": "Remove a Account",
+                "Account.update": "Update a Account",
+                "Application": "Unrestricted access to all Applications",
+                "Application.create": "Create a new Application",
+                "Application.query": "List and search the Applications",
+                "Application.read": "Read a Application",
+                "Application.remove": "Remove a Application",
+                "Application.update": "Update a Application"
+            }
+        },
+        "client_credentials": {
+            "type": "oauth2",
+            "description": "OAuth 2 Client Credentials Grant",
+            "flow": "application",
+            "tokenUrl": "https://local.myserver.test.co/api/v2/token",
+            "scopes": {
+                "Schema": "Unrestricted access to all Schemas",
+                "Schema.create": "Create a new Schema",
+                "Schema.query": "List and search the Schemas",
+                "Schema.read": "Read a Schema",
+                "Schema.remove": "Remove a Schema",
+                "Schema.update": "Update a Schema",
+                "User": "Unrestricted access to all Users",
+                "User.create": "Create a new User",
+                "User.query": "List and search the Users",
+                "User.read": "Read a User",
+                "User.remove": "Remove a User",
+                "User.update": "Update a User",
+                "Plan": "Unrestricted access to all Plans",
+                "Plan.create": "Create a new Plan",
+                "Plan.query": "List and search the Plans",
+                "Plan.read": "Read a Plan",
+                "Plan.remove": "Remove a Plan",
+                "Plan.update": "Update a Plan",
+                "Client": "Unrestricted access to all Clients",
+                "Client.create": "Create a new Client",
+                "Client.query": "List and search the Clients",
+                "Client.read": "Read a Client",
+                "Client.remove": "Remove a Client",
+                "Client.update": "Update a Client",
+                "Template": "Unrestricted access to all Templates",
+                "Template.create": "Create a new Template",
+                "Template.query": "List and search the Templates",
+                "Template.read": "Read a Template",
+                "Template.remove": "Remove a Template",
+                "Template.update": "Update a Template",
+                "Profile": "Unrestricted access to all Profiles",
+                "Profile.create": "Create a new Profile",
+                "Profile.query": "List and search the Profiles",
+                "Profile.read": "Read a Profile",
+                "Profile.remove": "Remove a Profile",
+                "Profile.update": "Update a Profile",
+                "Account": "Unrestricted access to all Accounts",
+                "Account.create": "Create a new Account",
+                "Account.query": "List and search the Accounts",
+                "Account.read": "Read a Account",
+                "Account.remove": "Remove a Account",
+                "Account.update": "Update a Account",
+                "Application": "Unrestricted access to all Applications",
+                "Application.create": "Create a new Application",
+                "Application.query": "List and search the Applications",
+                "Application.read": "Read a Application",
+                "Application.remove": "Remove a Application",
+                "Application.update": "Update a Application"
+            }
+        },
+        "session": {
+            "type": "apiKey",
+            "description": "Logged-in user access",
+            "name": "cookie",
+            "in": "header"
+        }
+    },
+    "tags": [
+        {
+            "name": "Schema",
+            "description": "JSON-Schema definitions",
+            "x-id": "id",
+            "x-name-plural": "Schemas"
+        },
+        {
+            "name": "User",
+            "description": "a User account",
+            "x-id": "id",
+            "x-name-plural": "Users",
+            "x-summary-fields": [
+                "id",
+                "firstname",
+                "surname"
+            ]
+        },
+        {
+            "name": "Plan",
+            "description": "Subscription or an add-on plan",
+            "x-id": "id",
+            "x-name-plural": "Plans",
+            "x-summary-fields": [
+                "id",
+                "parent",
+                "enabled",
+                "visible",
+                "family"
+            ]
+        },
+        {
+            "name": "Client",
+            "description": "Client Application",
+            "x-id": "id",
+            "x-title": "description",
+            "x-name-plural": "Clients",
+            "x-summary-fields": [
+                "user_id",
+                "description"
+            ]
+        },
+        {
+            "name": "Template",
+            "description": "Generic data template",
+            "x-id": "id",
+            "x-name-plural": "Templates",
+            "x-summary-fields": [
+                "id",
+                "_type"
+            ]
+        },
+        {
+            "name": "Profile",
+            "description": "Privilege profile",
+            "x-id": "id",
+            "x-name-plural": "Profiles",
+            "x-summary-fields": [
+                "id"
+            ]
+        },
+        {
+            "name": "Account",
+            "description": "Account",
+            "x-id": "id",
+            "x-name-plural": "Accounts",
+            "x-summary-fields": [
+                "id",
+                "world",
+                "country",
+                "status",
+                "timezone",
+                "default_language",
+                "owner"
+            ]
+        },
+        {
+            "name": "Application",
+            "description": "Console Application",
+            "x-title": "Application",
+            "x-name-plural": "Applications",
+            "x-summary-fields": [
+                "name"
+            ]
+        }
+    ],
+    "host": "local.myserver.test.co",
+    "basePath": "/api/v2",
+    "id": "https://local.myserver.test.co/api/v2/swagger.json#"
+}
