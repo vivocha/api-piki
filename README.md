@@ -1,4 +1,6 @@
-<br /><a href="https://github.com/pintux/api-piki"><img alt=":API-Piki" src="https://www.pintux.it/img/api-piki.png" width=350px/></a><br /><br />
+<br />
+<a href="https://github.com/vivocha/api-piki"><img alt=":API-Piki" src="https://www.pintux.it/img/api-piki.png" width=350px/></a>
+<br /><br />
 **_Web APIs testing for lazy cats_.**<br/>
 API-Piki for Node.js helps you generating recurrent test skeletons to catch bugs in your APIs described by an [OpenAPI Specification (fka Swagger) document](http://swagger.io/specification/).
 
@@ -14,7 +16,7 @@ If your Web/REST APIs are described by the [OpenAPI Specification (fka Swagger)]
 API-Piki tools generate test cases written in JavaScript / Node.js, using [Mocha](https://mochajs.org/chai
 ) and [Chai / Should](http://chaijs.com) as foundation testing frameworks.
 
-API-Piki is a perfect companion if you use **[Arrest](https://github.com/vivocha/arrest)** framework to specify and build your Web APIs with Node.js.
+API-Piki is the perfect companion if you use **[Arrest](https://github.com/vivocha/arrest)** framework to design and build your Web APIs with Node.js.
 
 
 ## Installation
