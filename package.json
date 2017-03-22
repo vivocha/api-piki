@@ -15,6 +15,10 @@
   "bin": {
     "piki": "./index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vivocha/api-piki.git"
+  },
   "keywords": [
     "API",
     "Open",
@@ -30,8 +34,12 @@
     "README.md",
     "LICENSE"
   ],
-  "author": "Antonio Pintus <apintus@vivocha.com>",
+  "author": "Antonio Pintus <apintus@vivocha.com>", 
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vivocha/api-piki/issues"
+  },
+  "homepage": "https://github.com/vivocha/api-piki",
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.2.0",

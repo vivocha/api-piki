@@ -2,6 +2,12 @@
 **_Web APIs testing for lazy cats_.**<br/>
 API-Piki for Node.js helps you generating recurrent test skeletons to catch bugs in your APIs described by an [OpenAPI Specification (fka Swagger) document](http://swagger.io/specification/).
 
+
+[![travis build](https://img.shields.io/travis/vivocha/api-piki.svg)](https://travis-ci.org/vivocha/api-piki)
+[![codecov coverage](https://img.shields.io/codecov/c/github/vivocha/api-piki.svg)](https://codecov.io/gh/vivocha/api-piki)
+[![npm version](https://img.shields.io/npm/v/api-piki.svg)](https://www.npmjs.com/package/api-piki)
+
+
 # API-Piki
 If your Web/REST APIs are described by the [OpenAPI Specification (fka Swagger)](http://swagger.io/specification/), this tool generates some recurrent common test cases skeletons to extensively test your API.
 
