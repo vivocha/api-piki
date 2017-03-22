@@ -17,10 +17,12 @@ If your Web/REST APIs are described by the [OpenAPI Specification (fka Swagger)]
 API-Piki tools generate test cases written in JavaScript / Node.js, using [Mocha](https://mochajs.org/chai
 ) and [Chai / Should](http://chaijs.com) as foundation testing frameworks.
 
-API-Piki is the perfect companion if you use **[Arrest](https://github.com/vivocha/arrest)** framework to design and build your Web APIs with Node.js.
+API-Piki is the perfect companion if you use **[Arrest](https://www.npmjs.com/package/arrest)** framework to design and build your Web APIs with Node.js.
 
 
 ## Installation
+
+**Required**: Node.js >= v7.7.4
 
 ```sh
 npm install -g api-piki
