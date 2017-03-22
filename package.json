@@ -4,6 +4,7 @@
   "description": "A Web API test skeletons generator for APIs described using OpenAPI Specification (fka Swagger).",
   "main": "index.js",
   "scripts": {
+    "precommit": "npm run cover && npm run check-coverage",
     "commit": "git-cz",
     "check-coverage": "nyc check-coverage --statements 90 --branches 50 --functions 90 --lines 90",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
@@ -45,28 +46,25 @@
   "homepage": "https://github.com/vivocha/api-piki",
   "devDependencies": {
     "chai": "^3.5.0",
+    "codecov.io": "0.1.6",
+    "commitizen": "2.9.6",
+    "cz-conventional-changelog": "2.0.0",
+    "husky": "^0.13.2",
     "mocha": "^3.2.0",
     "nyc": "^10.1.2",
     "rewire": "^2.5.2",
-    "supertest": "^3.0.0",
-    "codecov.io": "0.1.6",
-    "commitizen": "2.9.5",
-    "cz-conventional-changelog": "1.2.0",
-    "ghooks": "2.0.0",
-    "semantic-release": "^6.3.2"
+    "semantic-release": "^6.3.2",
+    "supertest": "^3.0.0"
   },
   "dependencies": {
     "commander": "^2.9.0",
-    "debug": "^2.6.1",
+    "debug": "^2.6.3",
     "lodash": "^4.17.4",
-    "request": "^2.79.0"
+    "request": "^2.81.0"
   },
   "config": {
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
-    },
-    "ghooks": {
-      "pre-commit": "npm run cover && npm run check-coverage"
-    }
+    }    
   }
 }
