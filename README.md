@@ -1,4 +1,4 @@
-<a href="https://github.com/pintux/api-piki"><img alt=":API-Piki" src="https:///www.pintux.it/img/api-piki.png" width=350px/></a><br />
+<a href="https://github.com/pintux/api-piki"><img alt=":API-Piki" src="https://www.pintux.it/img/api-piki.png" width=350px/></a><br />
 **_Web APIs testing for lazy cats_.**<br/>
 API-Piki for Node.js helps you generating recurrent test skeletons to catch bugs in your APIs described by an [OpenAPI Specification (fka Swagger) document](http://swagger.io/specification/).
 
