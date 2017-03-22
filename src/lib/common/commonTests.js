@@ -62,7 +62,7 @@ exports.testJSONListing =  ({baseURL, endpointPath, isAuthenticated=false, usern
 };
 
 
-//This function performs some repetitive tests about Basic authentication against provided endpoints
+//This function performs some repetitive tests about Basic Authentication against provided endpoints
 exports.testAuthentication = ( {baseURL, method = 'get', endpoint, username = 'test_user', userpasswd = 'test_passw0rd'} ) => {
     if (!endpoint) throw new Error('Endpoint URL not provided. It must be provided as "/path[/:id]"');
     if (!baseURL) throw new Error('Base URL not provided');
