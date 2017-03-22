@@ -19,6 +19,9 @@
     "type": "git",
     "url": "https://github.com/vivocha/api-piki.git"
   },
+  "engines": {
+    "node": ">= 7.7.4"
+  },
   "keywords": [
     "API",
     "Open",
