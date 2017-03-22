@@ -1,7 +1,7 @@
 {
   "name": "api-piki",
   "version": "0.0.0-development",
-  "description": "An Open API Specification (fka Swagger) parser & Mocha/Chai-based API test skeletons generator",
+  "description": "A Web API test skeletons generator for APIs described using OpenAPI Specification (fka Swagger).",
   "main": "index.js",
   "scripts": {
     "commit": "git-cz",
