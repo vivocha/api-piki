@@ -2,6 +2,7 @@
 const program = require('commander');
 const generator = require('./src/lib/generator');
 const path = require('path');
+const fs = require('fs');
 
 program
     .usage('[options] <spec>')
@@ -15,15 +16,20 @@ program
     .parse(process.argv);
 
     if(typeof specFile === 'undefined') {
-        console.log('API specification file / URL not provided');
+        console.log('\n Nothing to do here... API specification file / URL not provided');
         process.exit(1);
     } else {        
         let swaggerPath = ( specFile.startsWith('http:') || specFile.startsWith('https:') ) ? specFile : `file://${path.resolve(specFile)}`;
+        if( swaggerPath.startsWith('file:') && !fs.existsSync(path.resolve(specFile)) ) {
+            console.log('\n Specified file doesn\'t exist. Please check it.\n');
+            process.exit(1);
+        }        
         console.log(`\nGenerating API tests for ${specFile}`);
         console.log(`Target directory is ${program.out ? program.out : '(DEFAULTING to) ./api-swag'}`);
         if(program.forceAuth) {
             console.log('Basic Authorization forcing enabled.');
         }
+        
         generator.run(swaggerPath, program.out, {forcedAuth: program.forceAuth ? true : false})
             .then( files =>  {               
                 console.log('\nGenerated files:');

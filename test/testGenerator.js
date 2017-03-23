@@ -104,6 +104,23 @@ describe('Running test generation for a VVC swagger file', function() {
         rmdir(outDir);
     });
 });
+describe('Running test generation for a WRONG VVC swagger file', function() {    
+    it('should result in creating all the files at the right path, one for endpoint', function(done) { 
+        const fileName = 'file://'+path.resolve(process.cwd(), 'test/vvc-swagger-wBugs.json');
+        generator.run(fileName)
+            .then( res =>  {               
+                countFiles(outDir).should.be.equal(res.length + 1);
+                done();
+            } )
+            .catch( err => {
+                should.exist(err);
+                done();
+            });                     
+    });    
+    after(function() {    
+        rmdir(outDir);
+    });
+});
 
 describe('Running test generation for a VVC swagger file at a custom directory', function() {
     let testsDir = './ANOTHER-VVC-OUTDIR';     

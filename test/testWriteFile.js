@@ -22,7 +22,7 @@ describe('writing a skeleton to file', function() {
         .catch(err => done(err));                            
     }); 
 
-    it('should fail in creating a wrong contents', function(done) {
+    it('should fail in creating a wrong content', function(done) {
         let testGen = rewire('../src/lib/generator');
         let writeToFile = testGen.__get__("_writeToFile");
 
@@ -85,6 +85,21 @@ describe('Copying commonTests.js', function() {
               }); 
         })
         .catch((err) => done(err));      
+    });    
+});
+
+describe('Copying commonTests.js', function() {    
+    it('for to a restricted destination should result in an Error', function(done) {
+        let testGen = rewire('../src/lib/generator');
+        let copyCommonTests = testGen.__get__("_copyCommonTests");
+        copyCommonTests( {toDir: './test/FAKE-TEST-DIR'} )
+        .then(dest => {            
+            done();                   
+        })
+        .catch(err => {
+            should.exist(err);
+            done();
+        });      
     });    
 });
 

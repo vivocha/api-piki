@@ -1,9 +1,6 @@
 {
     "swagger": "2.0",
-    "schemes": [
-        "https",
-        "http"
-    ],
+    
     "consumes": [
         "application/json"
     ],

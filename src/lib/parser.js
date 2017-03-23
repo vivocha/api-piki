@@ -21,7 +21,7 @@ const _fetchFromWeb = (url) => {
         request({url: url}, (err, res, body) => {
             if(err) reject(err);
             else (res.statusCode === 200) ? resolve({ original: JSON.parse(body), api: _toAPIObj(JSON.parse(body)) }) : reject(new Error(res.statusMessage));            
-        })
+        });
     });
 };
 const _fetchFromFile = (filePath) => {
