@@ -46,7 +46,7 @@
   "homepage": "https://github.com/vivocha/api-piki",
   "devDependencies": {
     "chai": "^3.5.0",
-    "codecov.io": "0.1.6",
+    "codecov.io": "^0.1.6",
     "commitizen": "2.9.6",
     "cz-conventional-changelog": "2.0.0",
     "husky": "^0.13.2",
@@ -65,6 +65,6 @@
   "config": {
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
-    }    
+    }
   }
 }

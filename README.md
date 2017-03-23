@@ -18,7 +18,7 @@ If your Web/REST APIs are described by the [OpenAPI Specification (fka Swagger)]
 API-Piki tools generate test cases written in JavaScript / Node.js, using [Mocha](https://mochajs.org/chai
 ) and [Chai / Should](http://chaijs.com) as foundation testing frameworks.
 
-API-Piki is the perfect companion if you use **[Arrest](https://www.npmjs.com/package/arrest)** framework to design and build your Web APIs with Node.js.
+API-Piki is the perfect companion if you use **[arrest](https://www.npmjs.com/package/arrest)** framework to design and build your Web APIs with Node.js.
 
 
 ## Installation
@@ -37,7 +37,7 @@ $ piki -o api-tests <OpenApi Spec File or URL>
 ```
 where `<OpenApi Spec File or URL>` is the OpenAPI Spec local file path or its remote URL.
 
-API-Piki generates all the common test suites in the specified output directory. Then, your tests are runnable (please, read **Generated code & Philosophy** section):
+API-Piki generates all the common test suites in the specified output directory. Then, your tests are runnable (please, read the **Generated code & Philosophy** section for more detailed info):
 
 ```bash
 $ cd api-tests && npm i && npm test
@@ -53,15 +53,15 @@ The `piki` tests generator tool can also be further configured with the followin
     -f, --forceAuth     force tests generation using Basic Authentication 
 
 
-## Generated code & Philosophy
+## Generated Code & Philosophy
 Testing Web/REST APIs can be tedious and repetitive.
-API-Piki philosophy is to provide a simple tool to generate some "Black Box" recurrent and common test skeletons for Web APIs described by OpenAPI Specification; then, the test skeletons can be edited and adapted in order to strictly match the particular API implementation/testing.
+API-Piki philosophy is to provide a simple tool to generate some "Black Box", recurrent and common test cases skeletons to test Web APIs described by OpenAPI Specification; then, the generated test skeletons can be edited and adapted in order to strictly match the particular API implementation/testing strategy.
 
 API-Piki tool generates the code for a set of common Mocha/Chai test suites. A different JavaScript file is generated per _method-endpoint-path_.
 Generated code is not intended to be runnable as it is (despite it can be run). Instead, the ideal workflow is the following:
 
-1. Run `piki` tool against an OpenAPI spec document;
-2. Open and edit the generated test files in order to complete or adapt them (feel free to add new tests!). In particular, search for the code lines using Mocha's `describe.skip()` function (read more [here](https://mochajs.org/#inclusive-tests)) and choose to remove and adapt them to enable test cases. Also, please note that the current API-Piki version doesn't generate HTTP request bodies (it's on our roadmap).
+1. Run `piki` tool against an OpenAPI spec document (file or URL);
+2. Open and edit the generated test files in order to complete or adapt them (feel free to add new tests!). In particular, search for the code lines using Mocha's `describe.skip()` function (read more [here](https://mochajs.org/#inclusive-tests)) and choose which to remove and adapt to enable the single test cases. Also, please note that the current API-Piki version doesn't generate HTTP request bodies for POSTs/PUTs (it's on our roadmap).
 3. Run the tests.
 
 **WARNING**: Current version of the `piki` tool **overwrites** existing tests if you run it specifying an existing directory. So, be careful running the tool again if you edited the code.
