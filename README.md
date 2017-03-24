@@ -10,6 +10,7 @@ API-Piki for Node.js helps you generating recurrent test skeletons to catch bugs
 [![travis build](https://img.shields.io/travis/vivocha/api-piki.svg)](https://travis-ci.org/vivocha/api-piki)
 [![codecov coverage](https://img.shields.io/codecov/c/github/vivocha/api-piki.svg)](https://codecov.io/gh/vivocha/api-piki)
 [![npm version](https://img.shields.io/npm/v/api-piki.svg)](https://www.npmjs.com/package/api-piki)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 
 # API-Piki
