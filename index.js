@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+
+
+//API-PIKI command line tool
 const program = require('commander');
 const generator = require('./src/lib/generator');
 const path = require('path');
