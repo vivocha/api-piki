@@ -25,12 +25,10 @@
   },
   "keywords": [
     "API",
-    "Open",
-    "API",
     "Specification",
-    "API",
-    "doc",
-    "Test"
+    "Test",
+    "Swagger",
+    "OpenAPI"
   ],
   "files": [
     "src",

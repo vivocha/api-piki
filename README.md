@@ -9,6 +9,7 @@ API-Piki for Node.js helps you generate and write recurrent test skeletons to ca
 
 [![travis build](https://img.shields.io/travis/vivocha/api-piki.svg)](https://travis-ci.org/vivocha/api-piki)
 [![Coverage Status](https://coveralls.io/repos/github/vivocha/api-piki/badge.svg?branch=master)](https://coveralls.io/github/vivocha/api-piki?branch=master)
+[![Known Vulnerabilities](https://snyk.io/test/github/vivocha/api-piki/badge.svg)](https://snyk.io/test/github/vivocha/api-piki)
 [![npm version](https://img.shields.io/npm/v/api-piki.svg)](https://www.npmjs.com/package/api-piki)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
