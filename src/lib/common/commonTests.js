@@ -1,3 +1,5 @@
+//API-Piki Common Tests
+
 const should = require('chai').should();
 const supertest = require('supertest');
 const jsonpolice = require('jsonpolice');
