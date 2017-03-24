@@ -4,7 +4,7 @@
 
 **_Web APIs testing for lazy cats_.**<br/>
 
-API-Piki for Node.js helps you generating recurrent test skeletons to catch bugs in your APIs described by an [OpenAPI Specification (fka Swagger) document](http://swagger.io/specification/).
+API-Piki for Node.js helps you generate and write recurrent test skeletons to catch bugs in your APIs described by an [OpenAPI Specification (fka Swagger) document](http://swagger.io/specification/).
 
 
 [![travis build](https://img.shields.io/travis/vivocha/api-piki.svg)](https://travis-ci.org/vivocha/api-piki)
@@ -68,7 +68,7 @@ Generated code is not intended to be runnable as it is (despite it can be run). 
 **WARNING**: Current version of the `piki` tool **overwrites** existing tests if you run it specifying an existing directory. So, be careful running the tool again if you edited the code.
 
 ## Limitations
-Current version has the following limitations:
+This version has the following limitations:
 
 - `application/json` is the only supported format for endpoints;
 - only Basic Authentication is supported as security scheme;

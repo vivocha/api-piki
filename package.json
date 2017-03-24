@@ -10,7 +10,7 @@
     "report-coverage": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "watch:test": "npm t -- -w",
     "test": "mocha",
-    "cover": "nyc npm test && nyc report --reporter=text-lcov",
+    "cover": "nyc --reporter=lcov --reporter=text npm test",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "bin": {
