@@ -3,8 +3,8 @@
  */
 
 const skipComment = `//This test skeleton IS INTENTIONALLY INCOMPLETE. 
-//To complete it read the comments below and remove the skip() function.
-//See Mocha documentation for more about skip: https://mochajs.org/#inclusive-tests`;
+//To complete it read the comments below and remove the skip() function from tests after completing them.
+//See Mocha documentation for more info about skip(): https://mochajs.org/#inclusive-tests`;
 
 
 
