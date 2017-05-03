@@ -43,20 +43,20 @@
   },
   "homepage": "https://github.com/vivocha/api-piki",
   "devDependencies": {
-    "chai": "^3.5.0",    
+    "chai": "^3.5.0",
     "commitizen": "2.9.6",
-    "coveralls": "^2.12.0",
+    "coveralls": "^2.13.1",
     "cz-conventional-changelog": "2.0.0",
-    "husky": "^0.13.2",
-    "mocha": "^3.2.0",
-    "nyc": "^10.1.2",
+    "husky": "^0.13.3",
+    "mocha": "^3.3.0",
+    "nyc": "^10.3.0",
     "rewire": "^2.5.2",
     "semantic-release": "^6.3.2",
     "supertest": "^3.0.0"
   },
   "dependencies": {
     "commander": "^2.9.0",
-    "debug": "^2.6.3",
+    "debug": "^2.6.6",
     "lodash": "^4.17.4",
     "request": "^2.81.0"
   },

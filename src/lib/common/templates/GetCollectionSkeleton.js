@@ -18,6 +18,7 @@ exports.getTest = ({baseURL, method = 'get', endpointPath, isAuthenticated=false
 ${skipComment}
 ${requirements(baseURL)}
 ${getBasicAuthCredentials()}
+describe('GET ${endpointPath}', function() {
 ${notFoundForFakeTest(baseURL, isAuthenticated, username, userpasswd)}
 ${isAuthenticated ? `${commonAuthTest(baseURL, method, endpointPath, username, userpasswd )}` : ''}
 ${jsonListingTest(baseURL, endpointPath, isAuthenticated, username, userpasswd)}
@@ -37,4 +38,4 @@ describe.skip('${method.toUpperCase()} ${endpointPath}', function(){
             });
     });
 });
-`}; //end skeleton     
+});`}; //end skeleton     

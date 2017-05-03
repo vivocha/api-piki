@@ -15,6 +15,7 @@ exports.getTest = ({baseURL, method = 'get', endpointPath, isAuthenticated=false
 ${skipComment}
 ${requirements(baseURL)}
 ${getBasicAuthCredentials()}
+describe('DELETE ${endpointPath}', function() {
 ${isAuthenticated ? `${commonAuthTest(baseURL, method, endpointPath.replace(/{.+}/, 'aSuperFakeID', username, userpasswd ))}` : ''}
 
 
@@ -96,4 +97,4 @@ describe.skip('PUT Test Suite', function() {
 });
 
 
-`}; //end skeleton     
+});`}; //end skeleton     

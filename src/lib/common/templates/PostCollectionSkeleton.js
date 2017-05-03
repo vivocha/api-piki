@@ -15,6 +15,7 @@ exports.getTest = ({baseURL, method = 'get', endpointPath, isAuthenticated=false
 ${skipComment}
 ${requirements(baseURL)}
 ${getBasicAuthCredentials()}
+describe('POST ${endpointPath}', function() {
 ${isAuthenticated ? `${commonAuthTest(baseURL, method, endpointPath, username, userpasswd )}` : ''}
 
 describe.skip('POST Test Suite', function() {
@@ -79,4 +80,4 @@ describe.skip('POST Test Suite', function() {
 
 });
 
-`}; //end skeleton     
+});`}; //end skeleton     

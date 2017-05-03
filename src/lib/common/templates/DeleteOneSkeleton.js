@@ -15,6 +15,7 @@ exports.getTest = ({baseURL, method = 'get', endpointPath, isAuthenticated=false
 ${skipComment}
 ${requirements(baseURL)}
 ${getBasicAuthCredentials()}
+describe('DELETE ${endpointPath}', function() {
 ${isAuthenticated ? `${commonAuthTest(baseURL, method, endpointPath.replace(/{.+}/, 'aSuperFakeID', username, userpasswd ))}` : ''}
 
 
@@ -27,4 +28,4 @@ describe.skip('${method.toUpperCase()} ${endpointPath}', function(){
     ${deleteTest( baseURL, endpointPath, "validResourceBody", isAuthenticated, username, userpasswd )}
 });
 
-`}; //end skeleton     
+});`}; //end skeleton     

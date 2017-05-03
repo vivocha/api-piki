@@ -16,6 +16,7 @@ exports.getTest = ({baseURL, method = 'get', endpointPath, isAuthenticated=false
 ${skipComment}
 ${requirements(baseURL)}
 ${getBasicAuthCredentials()}
+describe('GET ${endpointPath}', function() {
 ${isAuthenticated ? `${commonAuthTest(baseURL, method, endpointPath.replace(/{.+}/, 'aSuperFakeID'), username, userpasswd )}` : ''}
 ${testNotValidIdsTest(baseURL, method, endpointPath.replace(/{.+}/, ''), {}, isAuthenticated, username, userpasswd)}
 
@@ -39,4 +40,4 @@ describe.skip('${method.toUpperCase()} ${endpointPath} for an existing resource'
             });
     });
 });
-`}; //end skeleton     
+});`}; //end skeleton     

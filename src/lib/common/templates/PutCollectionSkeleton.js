@@ -12,6 +12,7 @@ exports.getTest = ({baseURL, method = 'get', endpointPath, isAuthenticated=false
 ${skipComment}
 ${requirements(baseURL)}
 ${getBasicAuthCredentials()}
+describe('PUT ${endpointPath}', function() {
 ${isAuthenticated ? `${commonAuthTest(baseURL, method, endpointPath, username, userpasswd )}` : ''}
 
 //the following test case is incomplete and can be used as a template to write new cases
@@ -19,4 +20,4 @@ describe.skip('${method.toUpperCase()} ${endpointPath}', function(){
     it('TBD, write test case in the context of your PUT ${endpointPath} semantics');
 });
 
-`}; //end skeleton     
+});`}; //end skeleton     
