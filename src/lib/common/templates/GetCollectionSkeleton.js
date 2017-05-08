@@ -1,17 +1,16 @@
 const {
-    skipComment, 
-    okSnippet, 
-    errorSnippet, 
+    skipComment,
+    okSnippet,
+    errorSnippet,
     getBasicAuthCredentials,
-    commonAuthTest, 
-    requirements, 
-    jsonListingTest, 
+    commonAuthTest,
+    requirements,
+    jsonListingTest,
     notFoundForFakeTest,
-    testNoEmptyObjsInListsTest
+    testNoEmptyObjsInListsTest,
 } = require('./snippets');
 
-exports.getTest = ({baseURL, method = 'get', endpointPath, isAuthenticated=false, username = 'test_user', userpasswd = 'test_passw0rd', isError=false, statusCode=200, description="WRITE YOUR TEST CASE DESCRIPTION HERE"}) => {
-    return  `/**
+exports.getTest = ({ baseURL, method = 'get', endpointPath, isAuthenticated = false, username = 'test_user', userpasswd = 'test_passw0rd', isError = false, statusCode = 200, description = 'WRITE YOUR TEST CASE DESCRIPTION HERE' }) => `/**
  * Generated test skeleton for ${isAuthenticated ? 'an authenticated' : ''} ${method.toUpperCase()} ${endpointPath}
  */
 
@@ -38,4 +37,4 @@ describe.skip('${method.toUpperCase()} ${endpointPath}', function(){
             });
     });
 });
-});`}; //end skeleton     
+});`; // end skeleton

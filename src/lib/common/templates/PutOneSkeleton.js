@@ -1,22 +1,21 @@
 const {
-    skipComment, 
-    okSnippet, 
-    errorSnippet, 
+    skipComment,
+    okSnippet,
+    errorSnippet,
     getBasicAuthCredentials,
-    commonAuthTest, 
-    requirements, 
-    testNotValidIdsTest
+    commonAuthTest,
+    requirements,
+    testNotValidIdsTest,
 } = require('./snippets');
 
-exports.getTest = ({baseURL, method = 'get', endpointPath, isAuthenticated=false, username = 'test_user', userpasswd = 'test_passw0rd', isError=false, statusCode=200, description="WRITE YOUR TEST CASE DESCRIPTION HERE"}) => {
-    return  `/**
+exports.getTest = ({ baseURL, method = 'get', endpointPath, isAuthenticated = false, username = 'test_user', userpasswd = 'test_passw0rd' }) => `/**
  * Generated test skeleton for ${isAuthenticated ? 'an authenticated' : ''} ${method.toUpperCase()} ${endpointPath}
  */
 ${skipComment}
 ${requirements(baseURL)}
 ${getBasicAuthCredentials()}
 describe('DELETE ${endpointPath}', function() {
-${isAuthenticated ? `${commonAuthTest(baseURL, method, endpointPath.replace(/{.+}/, 'aSuperFakeID', username, userpasswd ))}` : ''}
+${isAuthenticated ? `${commonAuthTest(baseURL, method, endpointPath.replace(/{.+}/, 'aSuperFakeID', username, userpasswd))}` : ''}
 
 
 //the following test case is incomplete and can be used as a template to write new cases
@@ -40,7 +39,7 @@ describe.skip('PUT Test Suite', function() {
             };
             request
                 .put(\`\${"${endpointPath}".replace(/{.+}/, existingID)}\`)${isAuthenticated ? `
-                .auth(username, userpasswd)`:''}
+                .auth(username, userpasswd)` : ''}
                 .set('Accept', 'application/json')
                 .send(resourceData)
                 .expect(400)
@@ -77,7 +76,7 @@ describe.skip('PUT Test Suite', function() {
             };
             request
                 .put(\`\${"${endpointPath}".replace(/{.+}/, existingID)}\`)${isAuthenticated ? `
-                .auth(username, userpasswd)`:''}
+                .auth(username, userpasswd)` : ''}
                 .set('Accept', 'application/json')
                 .send(resourceData)
                 .expect(200)
@@ -97,4 +96,4 @@ describe.skip('PUT Test Suite', function() {
 });
 
 
-});`}; //end skeleton     
+});`; // end skeleton

@@ -1,4 +1,4 @@
-exports.getBasicAuthCredentials = () =>  ({
-    username: process.env.USERNAME,
-    userpasswd: process.env.USERPASSWD
+exports.getBasicAuthCredentials = () => ({
+  username: process.env.USERNAME,
+  userpasswd: process.env.USERPASSWD,
 });

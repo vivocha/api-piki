@@ -7,7 +7,7 @@ const rmdir = require('../src/utils/filesystem').rmdir;
 describe('writing a skeleton to file', function() {    
     it('should result in creating the file at the right path', function(done) {
         let testGen = rewire('../src/lib/generator');
-        let writeToFile = testGen.__get__("_writeToFile");
+        let writeToFile = testGen.__get__("writeToFile");
         writeToFile({
             name: 'GETFakeThings', 
             skeleton: 'const info = "this is a test skeleton";'
@@ -24,7 +24,7 @@ describe('writing a skeleton to file', function() {
 
     it('should fail in creating a wrong content', function(done) {
         let testGen = rewire('../src/lib/generator');
-        let writeToFile = testGen.__get__("_writeToFile");
+        let writeToFile = testGen.__get__("writeToFile");
 
         const file = path.normalize(`${process.cwd()}/api-swag/FAKE.js`)
         fs.writeFileSync(file, 'just a fake file');
@@ -52,7 +52,7 @@ describe('writing a skeleton to file', function() {
         const dir = path.normalize(`${process.cwd()}/api-swag`);      
         rmdir(dir);        
         let testGen = rewire('../src/lib/generator');
-        let writeToFile = testGen.__get__("_writeToFile");
+        let writeToFile = testGen.__get__("writeToFile");
         writeToFile({
             name: 'GETFakeThings', 
             skeleton: 'const info = "this is a test skeleton";'
@@ -72,7 +72,7 @@ describe('writing a skeleton to file', function() {
 describe('Copying commonTests.js', function() {    
     it('should result in copying the default file to /api-swag', function(done) {
         let testGen = rewire('../src/lib/generator');
-        let copyCommonTests = testGen.__get__("_copyCommonTests");
+        let copyCommonTests = testGen.__get__("copyCommonTests");
         copyCommonTests()
         .then(() => {
               fs.existsSync(path.normalize(`${process.cwd()}/api-swag/commonTests.js`)).should.be.true;
@@ -91,7 +91,7 @@ describe('Copying commonTests.js', function() {
 describe('Copying commonTests.js', function() {    
     it('for to a restricted destination should result in an Error', function(done) {
         let testGen = rewire('../src/lib/generator');
-        let copyCommonTests = testGen.__get__("_copyCommonTests");
+        let copyCommonTests = testGen.__get__("copyCommonTests");
         copyCommonTests( {toDir: './test/FAKE-TEST-DIR'} )
         .then(dest => {            
             done();                   

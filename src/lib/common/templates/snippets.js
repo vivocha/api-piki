@@ -25,20 +25,20 @@ const errorSnippet = `  should.exist(res.body);
 `;
 
 
-const getBasicAuthCredentials = () => `const { username, userpasswd } = common.getBasicAuthCredentials();`;
-const commonAuthTest = (baseURL, method, endpointPath, username, userpasswd)  => `common.testAuthentication( {baseURL: "${baseURL}", method: "${method}", endpoint: "${endpointPath}", username: username, userpasswd: userpasswd});`; 
+const getBasicAuthCredentials = () => 'const { username, userpasswd } = common.getBasicAuthCredentials();';
+const commonAuthTest = (baseURL, method, endpointPath) => `common.testAuthentication( {baseURL: "${baseURL}", method: "${method}", endpoint: "${endpointPath}", username: username, userpasswd: userpasswd});`;
 
-const requirements = (baseURL) => `
+const requirements = baseURL => `
 const should = require('chai').should();
 const supertest = require('supertest');
 const common = require('./commonTests');  
 const request = supertest('${baseURL}');  
 `;
 
-const jsonListingTest = ( baseURL, endpointPath, isAuthenticated=false, username = 'test_user', userpasswd = 'test_passw0rd' ) => `common.testJSONListing({baseURL: "${baseURL}", endpointPath: "${endpointPath}", isAuthenticated: ${isAuthenticated}, username: username, userpasswd: userpasswd });`;
-const notFoundForFakeTest = ( baseURL, isAuthenticated=false, username = 'test_user', userpasswd = 'test_passw0rd' ) => `common.test404ForFakeResources({baseURL: "${baseURL}", fakeResources: ['aDummyResource','anotherBrickIntheWall','fakeOrDieResource'], isAuthenticated: ${isAuthenticated}, username: username, userpasswd: userpasswd });`;
-const testNoEmptyObjsInListsTest = ( baseURL, endpointPath, isAuthenticated=false, username = 'test_user', userpasswd = 'test_passw0rd' ) => `common.testNoEmptyObjsInLists( { baseURL: "${baseURL}", endpoint: "${endpointPath}", isAuthenticated: ${isAuthenticated}, username: username, userpasswd: userpasswd } );`;
-const testNotValidIdsTest = ( baseURL, method='get', endpointPath, body={}, isAuthenticated=false, username = 'test_user', userpasswd = 'test_passw0rd' ) => `common.testNotValidIds( { baseURL: "${baseURL}", method: "${method}", endpoint: "${endpointPath}", isAuthenticated: ${isAuthenticated}, username: username, userpasswd: userpasswd } );`;
+const jsonListingTest = (baseURL, endpointPath, isAuthenticated = false) => `common.testJSONListing({baseURL: "${baseURL}", endpointPath: "${endpointPath}", isAuthenticated: ${isAuthenticated}, username: username, userpasswd: userpasswd });`;
+const notFoundForFakeTest = (baseURL, isAuthenticated = false) => `common.test404ForFakeResources({baseURL: "${baseURL}", fakeResources: ['aDummyResource','anotherBrickIntheWall','fakeOrDieResource'], isAuthenticated: ${isAuthenticated}, username: username, userpasswd: userpasswd });`;
+const testNoEmptyObjsInListsTest = (baseURL, endpointPath, isAuthenticated = false) => `common.testNoEmptyObjsInLists( { baseURL: "${baseURL}", endpoint: "${endpointPath}", isAuthenticated: ${isAuthenticated}, username: username, userpasswd: userpasswd } );`;
+const testNotValidIdsTest = (baseURL, method = 'get', endpointPath, body = {}, isAuthenticated = false) => `common.testNotValidIds( { baseURL: "${baseURL}", method: "${method}", endpoint: "${endpointPath}", isAuthenticated: ${isAuthenticated}, username: username, userpasswd: userpasswd } );`;
 const deleteTest = ( baseURL, endpointPath, body = {}, isAuthenticated = false, username = 'test_user', userpasswd = 'test_passw0rd' ) => `common.testDelete = ( {baseURL: "${baseURL}" , endpoint: "${endpointPath}", body:${body}, isAuthenticated: ${isAuthenticated}, username: username, userpasswd: userpasswd } );`
 
 module.exports = {
