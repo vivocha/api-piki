@@ -11,7 +11,9 @@
     "watch:test": "npm t -- -w",
     "test": "mocha",
     "cover": "nyc --reporter=lcov --reporter=text npm test",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "bin": {
     "piki": "./index.js"
@@ -65,11 +67,13 @@
     "jsonpolice": "^5.2.0",
     "lodash": "^4.17.4",
     "request": "^2.81.0",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "snyk": "^1.192.0"
   },
   "config": {
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "snyk": true
 }
